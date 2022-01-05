@@ -1,0 +1,53 @@
+<body
+  style="padding: 5%; background-color: rgb(51, 134, 134); height: fit-content"
+>
+  <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+  />
+  <div class="container" style="margin-bottom: 10%">
+    <h3>Employee Details</h3>
+    <div style="margin-left: 45%">
+      <div
+        class="spinner-border"
+        style="width: 40px; height: 40px; margin-bottom: 10%"
+        *ngIf="loadFlag"
+      >
+        <span class="visually-hidden" style="margin-right: 45%"
+          >Loading...</span
+        >
+      </div>
+    </div>
+    <table class="table table-hover" *ngIf="data.length > 0">
+      <thead>
+        <tr>
+          <th scope="col">Sl.No</th>
+          <th scope="col">Name</th>
+          <th scope="col">Designation</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employee of data; let index = index">
+          <th scope="row">{{ index + 1 }}</th>
+          <td>{{ employee.name }}</td>
+          <td>{{ employee.designation }}</td>
+          <td>
+            <button class="btn" (click)="viewEmp(employee)">
+              <i class="glyphicon glyphicon-user"></i></button
+            ><button class="btn" (click)="delete(employee)">
+              <i class="glyphicon glyphicon-trash"></i>
+            </button>
+            <button class="btn" (click)="onEdit(employee)">
+              <i class="glyphicon glyphicon-pencil"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="info-text mat-body-1" *ngIf="data.length <= 0 && !loadFlag">
+      No Employee Found!
+    </p>
+    <button class="userSignupButton" routerLink="/newEmp">Add Employee</button>
+  </div>
+</body>

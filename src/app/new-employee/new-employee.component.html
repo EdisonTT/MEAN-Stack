@@ -1,0 +1,114 @@
+<body style="background-color: #c59e4942; padding: 5%; height: fit-content">
+  <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+  />
+  <div class="container">
+    <div>
+      <h3 style="width: 80%" *ngIf="mode === 'create'">
+        New Employee Registration
+      </h3>
+      <h3 style="width: 80%" *ngIf="mode === 'edit'">
+        Update Existing Employee
+      </h3>
+      <button class="btn home" routerLink="">
+        <i class="glyphicon glyphicon-home"></i>
+      </button>
+      <form [formGroup]="newEmployee" (ngSubmit)="onSubmit()">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" formControlName="name" />
+        <span
+          class="help-block"
+          *ngIf="
+            newEmployee.get('name')?.touched &&
+            newEmployee.get('name')?.value === ''
+          "
+          >This field can't be empty</span
+        ><br />
+        <label for="mobileNumber">Mobile Number:</label>
+        <input
+          type="number"
+          name="mobileNumber"
+          id="mobileNumber"
+          formControlName="mobileNumber"
+        />
+        <span
+          class="help-block"
+          *ngIf="
+            newEmployee.get('mobileNumber')?.invalid &&
+            newEmployee.get('mobileNumber')?.touched
+          "
+          >Enter a Valid Mobile Number</span
+        ><br />
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" formControlName="email" />
+        <span
+          class="help-block"
+          *ngIf="
+            newEmployee.get('email')?.invalid &&
+            newEmployee.get('email')?.touched
+          "
+          >Enter a Valid Email Address</span
+        ><br />
+        <label for="designation">Designation:</label>
+        <!-- <input
+          type="text"
+          name="designation"
+          id="designation"
+          formControlName="designation"
+        /> -->
+        <select
+          class="form-select form-select-lg mb-3"
+          aria-label=".form-select-lg example"
+          name="designation"
+          id="designation"
+          formControlName="designation"
+        >
+          <option selected disabled>Select Designation</option>
+          <option value="Designation 1">Designation 1</option>
+          <option value="Designation 2">Designation 2</option>
+          <option value="Designation 3">Designation 3</option>
+          <option value="Designation 4">Designation 4</option>
+        </select>
+
+        <span
+          class="help-block"
+          *ngIf="
+            newEmployee.get('designation')?.touched &&
+            newEmployee.get('designation')?.value === ''
+          "
+          >This field can't be empty</span
+        >
+        <br />
+
+        <label for="salary">Salary:</label>
+        <input type="number" name="salary" id="salary" formControlName="salary" />
+        <!-- <span
+          class="help-block"
+          *ngIf="
+            newEmployee.get('salary')?.value === '' &&
+            newEmployee.get('salary')?.touched
+          "
+          >This field can't be empty</span
+        > -->
+        <br />
+        <button
+          *ngIf="mode === 'create'"
+          type="submit"
+          [disabled]="!newEmployee.valid"
+        >
+          Submit
+        </button>
+        <button
+          *ngIf="mode === 'edit'"
+          type="submit"
+          [disabled]="!newEmployee.valid"
+        >
+          Update
+        </button>
+        <button *ngIf="mode === 'create'" type="reset">Reset</button>
+      </form>
+    </div>
+  </div>
+</body>
+<!-- [disabled]="!newEmployee.valid" -->
