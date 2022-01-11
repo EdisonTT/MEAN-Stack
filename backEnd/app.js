@@ -8,7 +8,7 @@ const app = express();
 
 mongoose
   .connect(
-    "mongodb+srv://edisontt:v5N4epAhSZQ3QzrA@cluster0.ig02e.mongodb.net/EmpList?retryWrites=true&w=majority"
+    "Add you own MongoDB Link"
   )
   .then(() => {
     console.log("Connected to database!");
